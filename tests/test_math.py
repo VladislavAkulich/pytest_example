@@ -1,12 +1,14 @@
 from pytest import raises, mark
 
 
+@mark.math
 def test_one_plus_one():
     assert 1 + 1 == 2
 
 
 # Test failure
-# @mark.skip
+@mark.skip
+@mark.math
 def test_one_plus_two():
     a = 1
     b = 2
@@ -15,6 +17,7 @@ def test_one_plus_two():
 
 
 # Exception handling
+@mark.math
 def test_divide_by_zero():
     with raises(ZeroDivisionError) as e:
         num = 1 / 0
@@ -34,5 +37,6 @@ products = [
 
 # Parametrized tests
 @mark.parametrize('a, b, product', products)
+@mark.math
 def test_multiplication(a, b, product):
     assert a * b == product
